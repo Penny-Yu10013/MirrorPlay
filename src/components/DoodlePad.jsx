@@ -84,7 +84,8 @@ export default function DoodlePad() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-12 h-12 bg-neutral-800 border border-neutral-700 rounded-full flex items-center justify-center text-xl hover:bg-neutral-700 transition-colors shadow-lg z-50"
+        className="fixed bottom-6 right-6 w-12 h-12 bg-neutral-800 border border-neutral-700 rounded-full flex items-center justify-center text-xl hover:bg-neutral-700 transition-colors shadow-lg z-50 select-none"
+        style={{ WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
         title="打開塗鴉板"
       >
         🎨
