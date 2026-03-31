@@ -284,7 +284,10 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 px-6 py-2 text-center text-neutral-700 text-xs border-t border-neutral-900 bg-neutral-950">
+      <footer
+        className="fixed bottom-0 left-0 right-0 px-6 py-2 text-center text-neutral-700 text-xs border-t border-neutral-900 bg-neutral-950 select-none"
+        style={{ WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
+      >
         解密遊戲，不是考試。慢慢來。
       </footer>
 
