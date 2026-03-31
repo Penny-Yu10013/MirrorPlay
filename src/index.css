@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* iPad 全域防選取：白名單模式 */
+* {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* 需要選取/複製的元素開放 */
+.selectable,
+.selectable * {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="search"] {
+  -webkit-user-select: text;
+  user-select: text;
+}

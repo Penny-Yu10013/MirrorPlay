@@ -180,7 +180,7 @@ function AiExplanationRender({ text }) {
   const lines = text.split('\n');
 
   return (
-    <div className="text-sm text-neutral-300 bg-neutral-800 rounded-lg p-3 leading-relaxed space-y-1">
+    <div className="text-sm text-neutral-300 bg-neutral-800 rounded-lg p-3 leading-relaxed space-y-1 selectable">
       {lines.map((line, i) => {
         // Detect lines that contain English sentences (3+ consecutive English words)
         const englishMatch = line.match(/[A-Z][a-z].*?[a-zA-Z\s]{10,}[.!?]/);
@@ -336,7 +336,7 @@ export default function WordDetail({ word, rawText, apiKey, onClose }) {
       ) : null}
 
       {/* Translation */}
-      <div className="text-sm">
+      <div className="text-sm selectable">
         <span className="text-neutral-500 mr-2">中文：</span>
         {transLoading ? (
           <span className="text-neutral-600">翻譯中⋯</span>
