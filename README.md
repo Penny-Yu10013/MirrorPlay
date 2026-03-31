@@ -3,7 +3,8 @@
 
 > 解密遊戲，不是考試。慢慢來。
 
-![圖片說明]![Uploading IMG_2092.png…]()
+![Uploading IMG_2092.png…]()
+
 
 
 ## 這是什麼？
