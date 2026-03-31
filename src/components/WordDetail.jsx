@@ -38,6 +38,8 @@ function ChineseCanvas() {
     e.preventDefault();
     e.stopPropagation();
     isDrawing.current = true;
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
     const ctx = canvasRef.current.getContext('2d');
     const pos = getPos(e);
     ctx.beginPath();
@@ -63,6 +65,8 @@ function ChineseCanvas() {
     e.preventDefault();
     e.stopPropagation();
     isDrawing.current = false;
+    document.body.style.userSelect = '';
+    document.body.style.webkitUserSelect = '';
   }, []);
 
   const clear = useCallback(() => {
@@ -75,11 +79,21 @@ function ChineseCanvas() {
 
   return (
     <div className="flex items-center gap-2">
-      <div className="relative">
+      <div
+        className="relative"
+        style={{
+          padding: '12px',
+          margin: '-12px',
+          touchAction: 'none',
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+        }}
+      >
         <canvas
           ref={canvasRef}
           className="bg-neutral-800 border border-neutral-700 rounded-lg cursor-crosshair touch-none"
-          style={{ width, height }}
+          style={{ width, height, WebkitTouchCallout: 'none' }}
           onPointerDown={startDraw}
           onPointerMove={draw}
           onPointerUp={endDraw}

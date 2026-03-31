@@ -54,6 +54,9 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
   const startDraw = useCallback((e) => {
     e.preventDefault();
     isDrawing.current = true;
+    // Prevent text selection on iPad while drawing
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
     const pos = getPos(e);
     lastPoint.current = pos;
     const ctx = canvasRef.current.getContext('2d');
@@ -80,6 +83,9 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
     e.preventDefault();
     isDrawing.current = false;
     lastPoint.current = null;
+    // Restore text selection
+    document.body.style.userSelect = '';
+    document.body.style.webkitUserSelect = '';
   }, []);
 
   const clearCanvas = useCallback(() => {
@@ -96,11 +102,21 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
         <span className="text-neutral-500 text-xs w-6 text-right shrink-0">
           {index + 1}.
         </span>
-        <div className="relative">
+        <div
+          className="relative"
+          style={{
+            padding: '12px',
+            margin: '-12px',
+            touchAction: 'none',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            WebkitTouchCallout: 'none',
+          }}
+        >
           <canvas
             ref={canvasRef}
             className="bg-neutral-800 border border-neutral-700 rounded-lg cursor-crosshair touch-none"
-            style={{ width, height }}
+            style={{ width, height, WebkitTouchCallout: 'none' }}
             onPointerDown={startDraw}
             onPointerMove={draw}
             onPointerUp={endDraw}

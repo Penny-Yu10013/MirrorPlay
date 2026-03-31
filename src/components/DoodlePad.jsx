@@ -33,6 +33,8 @@ export default function DoodlePad() {
   const startDraw = useCallback((e) => {
     e.preventDefault();
     isDrawing.current = true;
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
     const ctx = canvasRef.current.getContext('2d');
     const pos = getPos(e);
     ctx.beginPath();
@@ -66,6 +68,8 @@ export default function DoodlePad() {
   const endDraw = useCallback((e) => {
     e.preventDefault();
     isDrawing.current = false;
+    document.body.style.userSelect = '';
+    document.body.style.webkitUserSelect = '';
   }, []);
 
   const clearAll = useCallback(() => {
@@ -102,15 +106,17 @@ export default function DoodlePad() {
       </div>
 
       {/* Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="cursor-crosshair touch-none block"
-        style={{ width: 320, height: 400 }}
-        onPointerDown={startDraw}
-        onPointerMove={draw}
-        onPointerUp={endDraw}
-        onPointerLeave={endDraw}
-      />
+      <div style={{ touchAction: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}>
+        <canvas
+          ref={canvasRef}
+          className="cursor-crosshair touch-none block"
+          style={{ width: 320, height: 400, WebkitTouchCallout: 'none' }}
+          onPointerDown={startDraw}
+          onPointerMove={draw}
+          onPointerUp={endDraw}
+          onPointerLeave={endDraw}
+        />
+      </div>
 
       {/* Tools */}
       <div className="flex items-center gap-2 px-4 py-2 border-t border-neutral-700">
