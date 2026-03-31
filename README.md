@@ -3,6 +3,7 @@
 
 > 解密遊戲，不是考試。慢慢來。
 
+<img width="2360" height="1640" alt="IMG_2092" src="https://github.com/user-attachments/assets/1513b900-e5b5-4f41-a0d1-6ed6c9a1b06b" />
 
 
 ## 這是什麼？
