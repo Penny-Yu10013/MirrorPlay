@@ -6,6 +6,8 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
   const isDrawing = useRef(false);
   const lastPoint = useRef(null);
   const [hasContent, setHasContent] = useState(false);
+  const [hideButtons, setHideButtons] = useState(false);
+  const hideTimer = useRef(null);
 
   // Canvas size: responsive on mobile, word-length based on desktop
   const [containerWidth, setContainerWidth] = useState(0);
@@ -54,7 +56,9 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
   const startDraw = useCallback((e) => {
     e.preventDefault();
     isDrawing.current = true;
-    // Prevent text selection on iPad while drawing
+    // Hide buttons & prevent text selection on iPad while drawing
+    if (hideTimer.current) clearTimeout(hideTimer.current);
+    setHideButtons(true);
     document.body.style.userSelect = 'none';
     document.body.style.webkitUserSelect = 'none';
     const pos = getPos(e);
@@ -83,9 +87,10 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
     e.preventDefault();
     isDrawing.current = false;
     lastPoint.current = null;
-    // Restore text selection
+    // Restore text selection & show buttons after 300ms delay
     document.body.style.userSelect = '';
     document.body.style.webkitUserSelect = '';
+    hideTimer.current = setTimeout(() => setHideButtons(false), 300);
   }, []);
 
   const clearCanvas = useCallback(() => {
@@ -128,11 +133,12 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
             </span>
           )}
         </div>
-        {hasContent && (
+        {hasContent && !hideButtons && (
           <>
             <button
               onClick={clearCanvas}
               className="text-neutral-600 hover:text-neutral-400 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
               title="清除"
             >
               ✕
@@ -144,6 +150,7 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
                   ? 'border-amber-600 text-amber-400 bg-amber-950'
                   : 'border-neutral-600 text-neutral-400 hover:text-amber-300 hover:border-amber-600'
               }`}
+              style={{ userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
               title="查看單字詳情"
             >
               {isExpanded ? '收合' : '查看'}

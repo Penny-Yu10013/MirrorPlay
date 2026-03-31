@@ -106,7 +106,11 @@ function ChineseCanvas() {
         )}
       </div>
       {hasContent && (
-        <button onClick={clear} className="text-neutral-600 hover:text-neutral-400 text-xs">
+        <button
+          onClick={clear}
+          className="text-neutral-600 hover:text-neutral-400 text-xs"
+          style={{ userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
+        >
           ✕
         </button>
       )}
