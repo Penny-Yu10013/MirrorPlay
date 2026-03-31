@@ -58,3 +58,7 @@ MIT
 ## 免責聲明
 
 本工具僅供個人學習使用，不保證翻譯或 AI 解釋的準確性。
+
+## 致謝
+
+Built with [Claude](https://claude.ai) by Anthropic
