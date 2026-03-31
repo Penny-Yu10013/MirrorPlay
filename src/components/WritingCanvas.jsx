@@ -104,7 +104,10 @@ function SingleCanvas({ word, index, isExpanded, onToggle, rawText, apiKey }) {
   return (
     <div ref={containerRef}>
       <div className="flex items-center gap-2 group">
-        <span className="text-neutral-500 text-xs w-6 text-right shrink-0">
+        <span
+          className="text-neutral-500 text-xs w-6 text-right shrink-0"
+          style={{ userSelect: 'none', WebkitUserSelect: 'none', WebkitTouchCallout: 'none', pointerEvents: 'none' }}
+        >
           {index + 1}.
         </span>
         <div

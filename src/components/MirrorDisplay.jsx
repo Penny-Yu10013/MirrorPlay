@@ -14,12 +14,15 @@ export default function MirrorDisplay({ words, onRemoveWord }) {
             key={index}
             className="bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 inline-flex items-center gap-2 group relative"
           >
-            <span className="text-neutral-500 text-xs font-mono select-none">
+            <span
+              className="text-neutral-500 text-xs font-mono select-none"
+              style={{ WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
+            >
               {index + 1}
             </span>
             <span
               className="text-xl font-mono text-amber-300 inline-block select-none"
-              style={{ transform: 'scaleX(-1)', display: 'inline-block' }}
+              style={{ transform: 'scaleX(-1)', display: 'inline-block', WebkitUserSelect: 'none', WebkitTouchCallout: 'none' }}
             >
               {word}
             </span>
